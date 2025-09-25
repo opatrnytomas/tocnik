@@ -13,10 +13,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('pozadi.jpg') no-repeat 50% center fixed;
-            background-size: cover;
             font-family: Arial, sans-serif;
             color: white;
+        }
+
+        /* Výchozí pozadí */
+        body.mode0 {
+            background: url('pozadi.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Alternativní pozadí */
+        body.mode1 {
+            background: url('Subject.png') no-repeat center center fixed;
+            background-size: cover;
         }
 
         .container {
@@ -67,7 +77,7 @@
     </style>
 </head>
 
-<body>
+<body class="mode0">
     <div class="container">
         <img id="rotatingImage" src="tocnik.png" alt="Rotující obrázek">
         <div id="counter">0 s</div>
@@ -92,11 +102,13 @@
 
         document.getElementById('changeMode').addEventListener('click', () => {
             if (mode === 0) {
-                body.style.backgroundImage = "url('Subject.png')";
+                body.classList.remove("mode0");
+                body.classList.add("mode1");
                 rotatingImage.src = "Subject.png";
                 mode = 1;
             } else {
-                body.style.backgroundImage = "url('pozadi.jpg')";
+                body.classList.remove("mode1");
+                body.classList.add("mode0");
                 rotatingImage.src = "tocnik.png";
                 mode = 0;
             }
